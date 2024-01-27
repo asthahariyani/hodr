@@ -2,9 +2,11 @@ name: EKS hodr Deployment
 run-name: ${{ github.actor }} has triggered a build! 🚀
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - main
+    inputs:
+      parameter_name:
+        description: 'Branch name'
+        required: true
+        default: 'main'
 jobs:
   Deploy:
     runs-on: ubuntu-latest
