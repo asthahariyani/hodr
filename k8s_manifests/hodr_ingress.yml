@@ -1,0 +1,18 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: hodr-ingress
+  annotations:
+    kubernetes.io/ingress.class: nginx
+spec:
+  rules:
+  - host: fampay.com
+    http:
+      paths:
+      - path: /hodr/*
+        pathType: Prefix
+        backend:
+          service:
+            name: service-hodr
+            port:
+              number: 8080
