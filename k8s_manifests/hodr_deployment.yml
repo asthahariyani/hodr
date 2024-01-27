@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hodr-deployment
+  labels:
+    app: hodr
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hodr
+  minReadySeconds: 5
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  template:
+    metadata:
+      labels:
+        app: hodr
+    spec:
+      containers:
+      - name: hodr
+        image: $IMAGE
+        imagePullPolicy: Always
+        envFrom:
+        - configMapRef:
+            name: env-hodr
+        ports:
+        - containerPort: 8080
