@@ -1,12 +1,10 @@
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
-  name: deny-hodr-to-bran
+  name: deny-all
 spec:
   podSelector:
     matchLabels:
       app: hodr
   policyTypes:
   - Ingress
-  ingress:
-  - from: []
